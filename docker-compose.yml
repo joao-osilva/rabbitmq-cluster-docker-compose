@@ -1,0 +1,59 @@
+version: '2'
+
+services:
+  rabbitmq1:
+      image: rabbitmq:3-management
+      container_name: rabbitmq1
+      ports:
+        - "5671:5672"
+        - "15671:15672"
+      networks: 
+        - cluster-network
+      volumes:
+      - $PWD/storage/rabbitmq1:/var/lib/rabbitmq
+      environment:
+      - RABBITMQ_ERLANG_COOKIE=my_secret_cookie
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Admin123
+      - CLUSTERED=true
+  
+    rabbitmq2:
+      image: rabbitmq:3-management
+      container_name: rabbitmq2
+      ports:
+        - "5672:5672"
+        - "15672:15672"
+      networks: 
+        - cluster-network
+      volumes:
+      - $PWD/storage/rabbitmq2:/var/lib/rabbitmq
+      environment:
+      - RABBITMQ_ERLANG_COOKIE=my_secret_cookie
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Admin123
+      - CLUSTERED=true
+      depends_on:
+      - rabbitmq1
+  
+    rabbitmq3:
+      image: rabbitmq:3-management
+      container_name: rabbitmq3
+      ports:
+        - "5673:5672"
+        - "15673:15672"
+      networks: 
+        - cluster-network
+      volumes:
+        - $PWD/storage/rabbitmq3:/var/lib/rabbitmq
+      environment:
+      - RABBITMQ_ERLANG_COOKIE=my_secret_cookie
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=Admin123
+      - CLUSTERED=true
+      depends_on:
+      - rabbitmq1
+      - rabbitmq2
+
+networks:
+  cluster-network:
+    driver: bridge
