@@ -13,8 +13,8 @@ func failOnError(err error, msg string) {
 }
 
 func main() {
-	//conn, err := amqp.Dial("amqps://admin:admin@note20.duckdns.org:5672/")
-	conn, err := amqp.DialTLS("amqps://admin:admin@localhost:5672/", &tls.Config{ InsecureSkipVerify: true } )
+	//conn, err := amqp.Dial("amqp://admin:Admin123@localhost:5672/")
+	conn, err := amqp.DialTLS("amqps://admin:Admin123@localhost:5672/", &tls.Config{ InsecureSkipVerify: true } )
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 
