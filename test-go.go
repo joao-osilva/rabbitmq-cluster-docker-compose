@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-
+    "crypto/tls"
 	"github.com/streadway/amqp"
 )
 
@@ -13,8 +13,8 @@ func failOnError(err error, msg string) {
 }
 
 func main() {
-	conn, err := amqp.Dial("amqps://admin:admin@note20.duckdns.org:5672/")
-	//conn, err := amqp.Dial("amqp://admin:admin@localhost:15672/")
+	//conn, err := amqp.Dial("amqps://admin:admin@note20.duckdns.org:5672/")
+	conn, err := amqp.DialTLS("amqps://admin:admin@localhost:5672/", &tls.Config{ InsecureSkipVerify: true } )
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 
