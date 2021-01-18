@@ -1,10 +1,10 @@
 package main
 
 import (
-    "fmt"
-	"log"
-    "crypto/tls"
+	"crypto/tls"
+	"fmt"
 	"github.com/streadway/amqp"
+	"log"
 )
 
 func failOnError(err error, msg string) {
@@ -15,7 +15,7 @@ func failOnError(err error, msg string) {
 
 func sendMessage(amqpHost string, msg string) {
 	//conn, err := amqp.DialTLS("amqps://admin:Admin123@localhost1:5672/", &tls.Config{ InsecureSkipVerify: true } )
-	conn, err := amqp.DialTLS(fmt.Sprintf("amqps://%s/", amqpHost),  &tls.Config{ InsecureSkipVerify: true } )
+	conn, err := amqp.DialTLS(fmt.Sprintf("amqps://%s/", amqpHost), &tls.Config{InsecureSkipVerify: true})
 	failOnError(err, fmt.Sprintf("Failed to connect to RabbitMQ to %s", amqpHost))
 	defer conn.Close()
 
@@ -46,11 +46,9 @@ func sendMessage(amqpHost string, msg string) {
 	failOnError(err, "Failed to publish a message")
 	log.Printf(" [x] Sent %s", body)
 
-
 }
 
 func main() {
-    sendMessage("admin:Admin123@localhost1.localdomain:5672", "Hello")
-    sendMessage("admin:Admin123@localhost2.localdomain:5672", "Hello")
+	sendMessage("admin:Admin123@localhost1.localdomain:5672", "Hello")
+	sendMessage("admin:Admin123@localhost2.localdomain:5672", "Hello")
 }
-
