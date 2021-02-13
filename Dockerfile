@@ -2,8 +2,8 @@ FROM haproxy:1.7
 
 ENV HAPROXY_USER haproxy
 
-RUN groupadd --system ${HAPROXY_USER} \
-    && useradd --system --gid ${HAPROXY_USER} ${HAPROXY_USER} \
+RUN groupadd --system ${HAPROXY_USER} || true \
+    && useradd --system --gid ${HAPROXY_USER} ${HAPROXY_USER} || true \
     && mkdir -p /var/lib/${HAPROXY_USER} \
     && chown -R ${HAPROXY}:${HAPROXY_USER} /var/lib/${HAPROXY_USER}
 

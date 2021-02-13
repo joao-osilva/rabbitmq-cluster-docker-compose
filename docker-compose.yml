@@ -7,44 +7,44 @@ services:
   hostname: rabbitmq-node-1
   ports:
    - "15672:15672"
-  networks: 
+  networks:
    - cluster-network
   volumes:
    - $PWD/storage/rabbitmq-node-1:/var/lib/rabbitmq
   environment:
    - RABBITMQ_ERLANG_COOKIE=cluster_cookie
    - RABBITMQ_DEFAULT_USER=admin
-   - RABBITMQ_DEFAULT_PASS=Admin@123  
-  
+   - RABBITMQ_DEFAULT_PASS=Admin123
+
  rabbitmq-node-2:
   image: rabbitmq:3-management
   container_name: rabbitmq-node-2
   hostname: rabbitmq-node-2
   ports:
    - "15673:15672"
-  networks: 
+  networks:
    - cluster-network
   volumes:
    - $PWD/storage/rabbitmq-node-2:/var/lib/rabbitmq
   environment:
    - RABBITMQ_ERLANG_COOKIE=cluster_cookie
    - RABBITMQ_DEFAULT_USER=admin
-   - RABBITMQ_DEFAULT_PASS=Admin@123
-      
+   - RABBITMQ_DEFAULT_PASS=Admin123
+
  rabbitmq-node-3:
   image: rabbitmq:3-management
   container_name: rabbitmq-node-3
   hostname: rabbitmq-node-3
   ports:
    - "15674:15672"
-  networks: 
+  networks:
    - cluster-network
   volumes:
    - $PWD/storage/rabbitmq-node-3:/var/lib/rabbitmq
   environment:
    - RABBITMQ_ERLANG_COOKIE=cluster_cookie
    - RABBITMQ_DEFAULT_USER=admin
-   - RABBITMQ_DEFAULT_PASS=Admin@123
+   - RABBITMQ_DEFAULT_PASS=Admin123
 
  haproxy:
   image: haproxy-rabbitmq-cluster:1.7
@@ -53,8 +53,11 @@ services:
   ports:
     - "5672:5672"
     - "1936:1936"
-  networks: 
+  networks:
    - cluster-network
+  volumes:
+    - $PWD/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    - $PWD/mykey.pem:/usr/local/etc/haproxy/mykey.pem
 
 networks:
  cluster-network:
