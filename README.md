@@ -4,7 +4,7 @@ Creates a 3 node RabbitMQ cluster with a HAProxy acting as a load balancer.
 
 You need to build the HAProxy image first, just run:
 ```sh
-$ docker build -t roofimon/haproxy-rabbitmq-cluster:1.7 .
+$ docker build -t roofimon/haproxy-rabbitmq-cluster:2.3 .
 ```
 
 Now run the docker compose file:
