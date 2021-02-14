@@ -38,4 +38,11 @@ Check the cluster status:
 $ docker exec -ti rabbitmq-node-1 bash -c "rabbitmqctl cluster_status"
 ```
 
-Access HAProxy statistics report at `http://localhost:1936/haproxy?stats` with the credential `haproxy:haproxy`, and the RabbitMQ console at `http://localhost:15672/` with the credential `admin:Admin@123`.
+Access HAProxy statistics report at 
+```
+http://localhost:1936/haproxy?stats` with the credential `haproxy:haproxy`
+```
+RabbitMQ console at 
+```
+http://localhost:15672/` with the credential `admin:Admin@123`.
+```
