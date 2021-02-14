@@ -28,7 +28,7 @@ $ docker exec -ti rabbitmq-node-3 bash -c "rabbitmqctl join_cluster rabbit@rabbi
 $ docker exec -ti rabbitmq-node-3 bash -c "rabbitmqctl start_app"
 ```
 
-Declares a policy which matches the queues whose names begin with "ha." and configures mirroring to all nodes in the cluster:
+Declares a policy which matches the queues whose names begin with "test_." and configures mirroring to all nodes in the cluster:
 ```sh
 $ docker exec -ti rabbitmq-node-3 bash -c 'rabbitmqctl set_policy ha-all "^test\_" '{"ha-mode":"all"}'
 ```
