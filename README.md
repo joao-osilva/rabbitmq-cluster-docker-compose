@@ -45,8 +45,11 @@ Declares a policy which matches the queues whose names begin with "test_" and co
 $ docker exec -ti rabbitmq-node-3 bash -c 'rabbitmqctl set_policy ha-all "^test\_" "{\"ha-mode\":\"all\"}"'
 ```
 
-
-
-
-
-Access HAProxy statistics report at `http://localhost:1936/haproxy?stats` with the credential `haproxy:haproxy`, and the RabbitMQ console at `http://localhost:15672/` with the credential `admin:Admin@123`.
+Access HAProxy statistics report at 
+```
+http://localhost:1936/haproxy?stats` with the credential `haproxy:haproxy`
+```
+RabbitMQ console at 
+```
+http://localhost:15672/` with the credential `admin:Admin@123`.
+```
