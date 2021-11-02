@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
  rabbitmq-node-1:
@@ -47,7 +47,7 @@ services:
    - RABBITMQ_DEFAULT_PASS=Admin@123
 
  haproxy:
-  image: haproxy-rabbitmq-cluster:1.7
+  image: roofimon/haproxy-rabbitmq-cluster:2.3
   container_name: haproxy
   hostname: haproxy
   ports:
